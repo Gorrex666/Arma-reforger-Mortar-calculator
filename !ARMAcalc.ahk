@@ -186,3 +186,4 @@ end::Reload ;Recarga el script
 WinActivate, Comp ; Activate the "Comp" window
 GuiControl, Focus, DistanceInput
 SendInput ^a{Backspace} ; Select all text and delete it
+~f12::ExitApp
