@@ -6,8 +6,8 @@ Process, Priority,, A
 ; Calculate position for bottom-right corner
 SysGet, ScreenWidth, 78
 SysGet, ScreenHeight, 79
-GuiWidth := 130
-GuiHeight := 55
+GuiWidth := 107
+GuiHeight := 44
 GuiX := ScreenWidth - GuiWidth - 0  ; Adjust relative to edge
 GuiY := ScreenHeight - GuiHeight - 110
 
@@ -16,20 +16,20 @@ Gui, Color, afaca9
 Gui, Font, s11, Bold
 Gui -sysmenu -caption
 Gui, Show, x%GuiX% y%GuiY% w%GuiWidth% h%GuiHeight%, Comp
-Gui, Add, DropDownList, vMortarType gUpdateresult x40 y-5 w39 h110, M252|2B14
-Gui, Add, DropDownList, vShellType gUpdateresult x70 y-5 w39 h110, HE|SMK|FLR
-Gui, Add, DropDownList, vRings gUpdateresult x100 y-5 w39 h110, 0|1|2|3|4
+Gui, Add, DropDownList, vMortarType gUpdateresult x83 y-10 w33 h110, M252|2B14
+Gui, Add, DropDownList, vShellType gUpdateresult x60 y-10 w33 h110, HE|SMK|FLR
+Gui, Add, DropDownList, vRings gUpdateresult x37 y-10 w33 h110, 4|3|2|1|0
 Gui, Color,, afaca9
-Gui, Add, Edit, vDistanceInput gUpdateresult x3 y0 w35 h20 center
+Gui, Add, Edit, vDistanceInput gUpdateresult x0 y0 w35 h20 center
 ;Gui, Add, Text, vResultText x0 y80 w266 h26 center
 ;Gui, Add, Text, vMilsResult x0 y100 w266 h26 center
 
 ; Additional input for the new calculation
 Gui, Color,, afaca9
-Gui, Add, Edit, vMultiplierInput gUpdateresult x3 y25 w35 h20 center
+Gui, Add, Edit, vMultiplierInput gUpdateresult x0 y20 w35 h20 center
 ;Gui, Add, Text, vNewCalcResult x0 y180 w266 h26 center
-Gui, Font, s24, Bold
-Gui, Add, Text, vTotalResult x40 y20 w80 h30 center
+Gui, Font, s20, Bold
+Gui, Add, Text, vTotalResult x40 y13 w130 h30
 
 ; Piecewise data for original calculation
 piecewiseData := {}
