@@ -2,7 +2,6 @@
 #MaxThreadsPerHotkey 2
 Process, Priority,, A
 
-
 ; Calculate position for bottom-right corner
 SysGet, ScreenWidth, 78
 SysGet, ScreenHeight, 79
@@ -21,13 +20,10 @@ Gui, Add, DropDownList, vShellType gUpdateresult x60 y-10 w33 h110, HE|SMK|FLR
 Gui, Add, DropDownList, vRings gUpdateresult x37 y-10 w33 h110, 4|3|2|1|0
 Gui, Color,, afaca9
 Gui, Add, Edit, vDistanceInput gUpdateresult x0 y0 w35 h20 center
-;Gui, Add, Text, vResultText x0 y80 w266 h26 center
-;Gui, Add, Text, vMilsResult x0 y100 w266 h26 center
 
 ; Additional input for the new calculation
 Gui, Color,, afaca9
 Gui, Add, Edit, vMultiplierInput gUpdateresult x0 y20 w35 h20 center
-;Gui, Add, Text, vNewCalcResult x0 y180 w266 h26 center
 Gui, Font, s20, Bold
 Gui, Add, Text, vTotalResult x40 y13 w130 h30
 
@@ -78,18 +74,10 @@ Updateresult:
     mils := calculateMilsFromTable(distance, key) ; Mils calculation using newCalculationData
 
     ; Perform the new calculation using the new table
-    if (mils != "Out of Range" && mils != "") {
         newCalcResult := (mils * MultiplierInput) / 100  ; New calculation using newCalculationData
-    } else {
-        newCalcResult := ""
-    }
 
-    ; Calculate the total result
-    if (result != "" && newCalcResult != "") {
+   ; Calculate the total result
         totalResult := round(result + newCalcResult)
-    } else {
-        totalResult := ""
-    }
 
     ; Update the GUI
     GuiControl,, ResultText, % (result != "") ? result : ""
@@ -123,39 +111,7 @@ calculate(x, key) {
 
         result := lowerMils + ((x - lowerDistance) / (upperDistance - lowerDistance)) * (upperMils - lowerMils)
         return Round(result)
-    } else {
-        return "Out of Range"
-    }
-}
-
-; New Calculation: Multiplier based on the new table
-calculateNewMultiplier(distance, key, multiplier) {
-    global newCalculationData
-
-    data := newCalculationData[key]
-    distances := data["distances"]
-    multipliers := data["multipliers"]
-
-    ; Perform linear interpolation for multiplier
-    for index, value in distances {
-        if (distance < value) {
-            lowerIndex := index - 1
-            upperIndex := index
-            break
-        }
-    }
-
-    if (distance >= distances[1] && distance <= distances[distances.MaxIndex()]) {
-        lowerDistance := distances[lowerIndex]
-        upperDistance := distances[upperIndex]
-        lowerMultiplier := multipliers[lowerIndex]
-        upperMultiplier := multipliers[upperIndex]
-
-        interpolatedMultiplier := lowerMultiplier + ((distance - lowerDistance) / (upperDistance - lowerDistance)) * (upperMultiplier - lowerMultiplier)
-        return Round(interpolatedMultiplier * multiplier) ; Apply the multiplier to the result
-    } else {
-        return "Out of Range"
-    }
+    } 
 }
 
 ; Calculation function for mils (corrected to use newCalculationData)
@@ -183,13 +139,8 @@ calculateMilsFromTable(distance, key) {
 
         interpolatedMils := lowerMultiplier + ((distance - lowerDistance) / (upperDistance - lowerDistance)) * (upperMultiplier - lowerMultiplier)
         return Round(interpolatedMils)
-    } else {
-        return "Out of Range"
-    }
+    } 
 }
-
-
-
 
 ;HOTKEYS
 end::Reload
