@@ -18,12 +18,14 @@ Gui -sysmenu -caption
 Gui, Show, x%GuiX% y%GuiY% w%GuiWidth% h%GuiHeight%, Comp
 Gui, Add, DropDownList, vMortarType gUpdateresult x40 y-5 w39 h110, M252|2B14
 Gui, Add, DropDownList, vShellType gUpdateresult x70 y-5 w39 h110, HE|SMK|FLR
-Gui, Add, DropDownList, vRings gUpdateresult x100 y-5 w39 h110, 0|1|2|3|4`
+Gui, Add, DropDownList, vRings gUpdateresult x100 y-5 w39 h110, 0|1|2|3|4
+Gui, Color,, afaca9
 Gui, Add, Edit, vDistanceInput gUpdateresult x3 y0 w35 h20 center
 ;Gui, Add, Text, vResultText x0 y80 w266 h26 center
 ;Gui, Add, Text, vMilsResult x0 y100 w266 h26 center
 
 ; Additional input for the new calculation
+Gui, Color,, afaca9
 Gui, Add, Edit, vMultiplierInput gUpdateresult x3 y25 w35 h20 center
 ;Gui, Add, Text, vNewCalcResult x0 y180 w266 h26 center
 Gui, Font, s24, Bold
@@ -178,7 +180,7 @@ calculateMilsFromTable(distance, key) {
 
 
 ;HOTKEYS
-end::Reload ;Recarga el script
+end::Reload
 ~up::WinSet, AlwaysOnTop, Toggle, Comp
 ~f12::ExitApp
 ~`:: ; Trigger on the backtick key
