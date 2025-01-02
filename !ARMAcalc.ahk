@@ -6,8 +6,8 @@ Process, Priority,, A
 ; Calculate position for bottom-right corner
 SysGet, ScreenWidth, 78
 SysGet, ScreenHeight, 79
-GuiWidth := 136
-GuiHeight := 80
+GuiWidth := 130
+GuiHeight := 55
 GuiX := ScreenWidth - GuiWidth - 0  ; Adjust relative to edge
 GuiY := ScreenHeight - GuiHeight - 110
 
@@ -16,20 +16,18 @@ Gui, Color, afaca9
 Gui, Font, s11, Bold
 Gui -sysmenu -caption
 Gui, Show, x%GuiX% y%GuiY% w%GuiWidth% h%GuiHeight%, Comp
-Gui, Add, DropDownList, vMortarType gUpdateresult x45 y0 w39 h110, M252|2B14
-Gui, Add, DropDownList, vShellType gUpdateresult x75 y0 w39 h110, HE|SMK|FLR
-Gui, Add, DropDownList, vRings gUpdateresult x105 y0 w39 h110, 0|1|2|3|4
-Gui, Add, Edit, vDistanceInput gUpdateresult x6 y0 w35 h20 center
+Gui, Add, DropDownList, vMortarType gUpdateresult x40 y-5 w39 h110, M252|2B14
+Gui, Add, DropDownList, vShellType gUpdateresult x70 y-5 w39 h110, HE|SMK|FLR
+Gui, Add, DropDownList, vRings gUpdateresult x100 y-5 w39 h110, 0|1|2|3|4`
+Gui, Add, Edit, vDistanceInput gUpdateresult x3 y0 w35 h20 center
 ;Gui, Add, Text, vResultText x0 y80 w266 h26 center
 ;Gui, Add, Text, vMilsResult x0 y100 w266 h26 center
 
 ; Additional input for the new calculation
-Gui, Add, Edit, vMultiplierInput gUpdateresult x6 y30 w35 h20 center
+Gui, Add, Edit, vMultiplierInput gUpdateresult x3 y25 w35 h20 center
 ;Gui, Add, Text, vNewCalcResult x0 y180 w266 h26 center
 Gui, Font, s24, Bold
-Gui, Add, Text, vTotalResult x0 y48 w136 h30 center
-
-WinActivate, Hell Let Loose
+Gui, Add, Text, vTotalResult x40 y20 w80 h30 center
 
 ; Piecewise data for original calculation
 piecewiseData := {}
@@ -182,8 +180,8 @@ calculateMilsFromTable(distance, key) {
 ;HOTKEYS
 end::Reload ;Recarga el script
 ~up::WinSet, AlwaysOnTop, Toggle, Comp
+~f12::ExitApp
 ~`:: ; Trigger on the backtick key
 WinActivate, Comp ; Activate the "Comp" window
 GuiControl, Focus, DistanceInput
 SendInput ^a{Backspace} ; Select all text and delete it
-~f12::ExitApp
